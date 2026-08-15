@@ -22,8 +22,8 @@
     to{filter:brightness(1.2) saturate(1.3)}
   }
   .card{
-    width:min(900px,92vw);
-    padding:48px 28px;
+    width:min(950px,95vw);
+    padding:52px 32px;
     text-align:center;
     background:rgba(21,29,51,0.85);
     border:1px solid #2c3857;
@@ -36,7 +36,7 @@
     to{opacity:1;transform:translateY(0)}
   }
   .welcome{
-    font-size:26px;
+    font-size:30px;
     font-weight:700;
     margin-bottom:18px;
     background:linear-gradient(90deg,#ff9a9e,#fad0c4);
@@ -50,7 +50,7 @@
     to{text-shadow:0 0 24px #ff9a9e}
   }
   h1{
-    font-size:clamp(42px,8vw,82px);
+    font-size:clamp(48px,9vw,92px);
     margin:12px 0 6px;
     background:linear-gradient(90deg,#4facfe,#00f2fe);
     -webkit-background-clip:text;
@@ -64,67 +64,104 @@
   .count{
     display:flex;
     justify-content:center;
-    gap:14px;
+    gap:20px;
     flex-wrap:wrap;
+    margin-top:28px;
   }
   .unit{
-    min-width:130px;
-    padding:22px 12px;
+    min-width:150px;
+    padding:28px 16px;
     background:#0e1527;
-    border-radius:18px;
+    border-radius:20px;
     transition:transform .3s ease,box-shadow .3s ease;
     animation:float 4s infinite ease-in-out;
+    box-shadow:0 0 18px #00f2fe66;
+    font-size:28px;
+    font-weight:700;
+  }
+  .unit span{
+    font-size:42px;
+    font-weight:900;
+    color:#00f2fe;
+    text-shadow:0 0 12px #00f2feaa;
+  }
+  .unit:hover{
+    transform:scale(1.12);
+    box-shadow:0 0 28px #00f2feaa;
   }
   @keyframes float{
     0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-8px)}
+    50%{transform:translateY(-10px)}
   }
-  .num{
-    font-size:clamp(38px,6vw,62px);
-    font-weight:800;
-    color:#4facfe;
-    text-shadow:0 0 12px #00f2fe66;
+  .extra-links {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
   }
-  .label{
-    font-size:12px;
-    letter-spacing:2px;
-    color:#91a2c3;
-    margin-top:5px;
+  .extra-links a {
+    padding:12px 22px;
+    border-radius:24px;
+    background:linear-gradient(90deg,#4facfe,#00f2fe);
+    color:#0e1527;
+    text-decoration:none;
+    font-weight:600;
+    transition:all .3s ease;
+    box-shadow:0 0 14px #00f2fe66;
   }
-  .note{
-    margin-top:30px;
-    color:#d0d6e8;
-    font-size:13px;
-    line-height:1.5;
-    font-style:italic;
+  .extra-links a:hover {
+    background:linear-gradient(90deg,#ff9a9e,#fad0c4);
+    color:#fff;
+    box-shadow:0 0 20px #ff9a9eaa;
+    transform:translateY(-3px);
   }
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="welcome">🎮 Welcome Devanand 🎮</div>
-  <h1>GATE 2027</h1>
-  <div class="date">Countdown target: 7 February 2027 · 9:30 AM IST</div>
-  <div class="count">
-    <div class="unit"><div class="num" id="days">--</div><div class="label">DAYS</div></div>
-    <div class="unit"><div class="num" id="hours">--</div><div class="label">HOURS</div></div>
-    <div class="unit"><div class="num" id="mins">--</div><div class="label">MINUTES</div></div>
-    <div class="unit"><div class="num" id="secs">--</div><div class="label">SECONDS</div></div>
+  <div class="card">
+    <div class="welcome">Hello Devanand 👋, Best of Luck for GATE 2027!</div>
+    <h1>Countdown</h1>
+    <div class="count">
+      <div class="unit"><span id="days">000</span><br>Days</div>
+      <div class="unit"><span id="hours">00</span><br>Hours</div>
+      <div class="unit"><span id="minutes">00</span><br>Minutes</div>
+      <div class="unit"><span id="seconds">00</span><br>Seconds</div>
+    </div>
+
+    <!-- Extra Links Section -->
+    <div class="extra-links">
+      <a href="https://gate2027.iitm.ac.in/" target="_blank">Official GATE Site</a>
+      <a href="https://gate2027.iitm.ac.in/static/doc/GATE2027_Syllabus/CS_GATE2027_Syllabus.pdf" target="_blank">Syllabus</a>
+      <a href="https://www.madeeasy.in/prep/home" target="_blank">Preparation Resources</a>
+      <a href="https://chatgpt.com/s/t_6a800294af8c819189d28754f81969f9" target="_blank">Help</a>
+      <a href="https://gate2027.iitm.ac.in/previous-year-papers" target="_blank">Previous Year Papers</a>
+      <a href="https://docs.google.com/document/d/13_nrKmGVopRMFN7qK6HilsGJXGAkISDzQ48swMJR52M/edit?usp=sharing" target="_blank">click</a>
+    </div>
   </div>
-  <div class="note">Level up your prep — the countdown updates every second.</div>
-</div>
+
 <script>
-const target = new Date("2027-02-07T09:30:00+05:30").getTime();
-function update(){
-  let d = target - Date.now();
-  if(d < 0) d = 0;
-  const s = Math.floor(d/1000);
-  document.getElementById("days").textContent = Math.floor(s/86400);
-  document.getElementById("hours").textContent = String(Math.floor(s%86400/3600)).padStart(2,"0");
-  document.getElementById("mins").textContent = String(Math.floor(s%3600/60)).padStart(2,"0");
-  document.getElementById("secs").textContent = String(s%60).padStart(2,"0");
-}
-update(); setInterval(update,1000);
+  // Countdown Timer Script
+  const targetDate = new Date("February 6, 2027 09:00:00").getTime();
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysEl.textContent = days;
+    hoursEl.textContent = hours;
+    minutesEl.textContent = minutes;
+    secondsEl.textContent = seconds;
+  }, 1000);
 </script>
 </body>
 </html>
